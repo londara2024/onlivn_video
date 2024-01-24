@@ -1,0 +1,116 @@
+gogole linke : https://dbdiagram.io/d
+
+Table category {
+  id bigint [primary key]
+  name varchar (200)
+}
+
+Table course {
+  id bigint [primary key]
+  category_id integer
+  name varchar (225)
+}
+
+Ref: course.category_id - category.id
+
+Table video {
+  id bigint [primary key]
+  course_id bigint
+  users_id bigint
+  title varchar (225)
+  description text
+  video_link text
+  image_cover text
+  status integer
+  dete_created datetime
+  date_modified datetime
+  user_created datetime
+  user_modified datetime
+}
+
+Table users {
+  id bigint [primary key]
+  username varchar (225)
+  password varchar (225)
+  email varchar (200)
+  phone_number varchar(50)
+  date_of_birth datetime 
+  gender varchar (10)
+  photo text
+  join_date datetime
+}
+
+Ref: video.course_id > course.id
+Ref: video.users_id > users.id
+
+
+Table subscribes {
+  id bigint [primary key]
+  viewer_id integer
+  video_id integer
+  status integer
+  date_subscribes datetime
+}
+
+Ref: subscribes.video_id > video.id
+
+
+Table permissions {
+  id bigint [primary key]
+  permission_name varchar (200)
+}
+
+Table roles {
+  id bigint [primary key]
+  roles_name varchar (200)
+}
+
+Table roles_permissions {
+  roles_id bigint 
+  permissions_id bigint
+}
+
+
+Ref: roles.id < roles_permissions.roles_id
+Ref: permissions.id < roles_permissions.permissions_id
+
+
+Table user_roles {
+  users_id bigint 
+  roles_id bigint
+}
+
+Ref: users.id < user_roles.users_id
+Ref: roles.id < user_roles.roles_id
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

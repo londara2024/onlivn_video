@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/online_video
+    username: onlive_video
+    password: onlive_video
+  jpa:
+    properties:
+      hibernate:
+      dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+  liquibase:
+      change-log: classpath:db/changelog/db.changelog-master.yaml
+      enabled: true
+
+administer:
+  openapi:
+    dev-url: http://localhost:8080
+    prod-url: http://londara_openapi.com

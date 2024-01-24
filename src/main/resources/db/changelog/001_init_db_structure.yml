@@ -1,0 +1,175 @@
+databaseChangeLog:
+  - changeSet:
+      id: 001_init_db_structure
+      author: daralon2020@gamil.com
+      changes:
+        - createTable:
+            tableName: category
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  constraints:
+                    primaryKey: true
+                  autoIncrement: true
+              - column:
+                  name: brand_name
+                  type: VARCHAR (200)
+        - createTable:
+            tableName: course
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  constraints:
+                    primaryKey: true
+                  autoIncrement: true
+              - column:
+                  name: name
+                  type: VARCHAR (225)
+              - column:
+                  name: category_id
+                  type: BIGINT
+                  constraints:
+                    notNull: true
+                    foreignKey:
+                      name: fk_course_category
+                      referencedTableName: category
+                      referencedColumnName: category_id
+        - createTable:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  constraints:
+                    primaryKey: true
+                  autoIncrement: true
+              - column:
+                  name: username
+                  type: VARCHAR (225)
+              - column:
+                  name: password
+                  type: VARCHAR (225)
+              - column:
+                  name: email
+                  type: VARCHAR (225)
+              - column:
+                  name: phone_number
+                  type: VARCHAR (225)
+              - column:
+                  name: date_of_brith
+                  type: TIMESTAMP
+              - column:
+                  name: gender
+                  type: VARCHAR (10)
+              - column:
+                  name: photo
+                  type: TEXT
+              - column:
+                  name: join_date
+                  type: TIMESTAMP
+        - createTable:
+            tableName: video
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  constraints:
+                    primaryKey: true
+                  autoIncrement: true
+              - column:
+                  name: title
+                  type: VARCHAR (225)
+              - column:
+                  name: description
+                  type: TEXT
+              - column:
+                  name: video_link
+                  type: TEXT
+              - column:
+                  name: image_cover
+                  type: TEXT
+              - column:
+                  name: status
+                  type: INTEGER
+              - column:
+                  name: course_id
+                  type: BIGINT
+                  constraints:
+                    notNull: true
+                    foreignKey:
+                      name: fk_course_video
+                      referencedTableName: course
+                      referencedColumnName: course_id
+              - column:
+                  name: users_id
+                  type: BIGINT
+                  constraints:
+                    notNull: true
+                    foreignKey:
+                      name: fk_users_video
+                      referencedTableName: users
+                      referencedColumnName: users_id
+        - createTable:
+            tableName: subscribes
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  constraints:
+                    primaryKey: true
+                  autoIncrement: true
+              - column:
+                  name: viewer_id
+                  type: BIGINT
+              - column:
+                  name: description
+                  type: TEXT
+              - column:
+                  name: date_subscribes
+                  type: TIMESTAMP
+              - column:
+                  name: status
+                  type: INTEGER
+              - column:
+                  name: video_id
+                  type: BIGINT
+                  constraints:
+                    notNull: true
+                    foreignKey:
+                      name: fk_video_subscribes
+                      referencedTableName: video
+                      referencedColumnName: video_id
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

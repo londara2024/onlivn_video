@@ -1,0 +1,71 @@
+databaseChangeLog:
+  - changeSet:
+      id: 002_init_db_login_structure
+      author: daralon2020@gamil.com
+      changes:
+        - createTable:
+            tableName: permissions
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  constraints:
+                    primaryKey: true
+                  autoIncrement: true
+              - column:
+                  name: permission_name
+                  type: VARCHAR (200)
+        - createTable:
+            tableName: roles
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  constraints:
+                    primaryKey: true
+                  autoIncrement: true
+              - column:
+                  name: roles_name
+                  type: VARCHAR (200)
+        - createTable:
+            tableName: roles_permissions
+            columns:
+              - column:
+                  name: roles_id
+                  type: BIGINT
+                  constraints:
+                    notNull: true
+                    foreignKey:
+                      name: fk_roles_permissions
+                      referencedTableName: roles
+                      referencedColumnName: id
+              - column:
+                  name: permissions_id
+                  type: BIGINT
+                  constraints:
+                    notNull: true
+                    foreignKey:
+                      name: fk_roles_permissions
+                      referencedTableName: permissions
+                      referencedColumnName: id
+        - createTable:
+            tableName: user_roles
+            columns:
+              - column:
+                  name: users_id
+                  type: BIGINT
+                  constraints:
+                    notNull: true
+                    foreignKey:
+                      name: fk_users_roles
+                      referencedTableName: users
+                      referencedColumnName: id
+              - column:
+                  name: roles_id
+                  type: BIGINT
+                  constraints:
+                    notNull: true
+                    foreignKey:
+                      name: fk_users_roles
+                      referencedTableName: roles
+                      referencedColumnName: id

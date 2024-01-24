@@ -1,0 +1,10 @@
+databaseChangeLog:
+  - changeSet:
+      id: 003_rename_column_category
+      author: daralon2020@gamil.com
+      changes:
+        - renameColumn:
+            tableName: category
+            oldColumnName: brand_name
+            newColumnName: name
+            columnDataType: varchar
