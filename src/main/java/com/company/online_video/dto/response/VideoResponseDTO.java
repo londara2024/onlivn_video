@@ -9,7 +9,7 @@ public class VideoResponseDTO {
     private Long id;
     private String title;
     private String description;
-    private String videoLink;
+//    private String videoLink;
     private String imageCover;
     private String courseName;
     private String categoryName;
