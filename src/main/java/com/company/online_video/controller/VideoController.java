@@ -46,5 +46,11 @@ public class VideoController {
         return ResponseEntity.ok(response);
     }
 
+    @PutMapping("/video/update/{videoId}")
+    public ResponseEntity<?> updateVideo(@PathVariable("videoId") Long id, @RequestBody VideoDTO videoDTO) {
+        ApiBaseResponse<Video> response = videoService.updateVideo(id, videoDTO);
+        return ResponseEntity.ok(response);
+    }
+
 
 }
