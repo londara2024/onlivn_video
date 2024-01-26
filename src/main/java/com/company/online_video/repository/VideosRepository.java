@@ -9,5 +9,5 @@ import java.util.Optional;
 
 @Repository
 public interface VideosRepository extends JpaRepository<Video, Long> {
-    Optional<List<Video>> findByUserId(Long userId);
+    Optional<List<Video>> findByUsersId(Long userId);
 }

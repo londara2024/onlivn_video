@@ -1,6 +1,7 @@
 package com.company.online_video.controller;
 
 import com.company.online_video.dto.VideoDTO;
+import com.company.online_video.dto.response.VideoResponseDTO;
 import com.company.online_video.entity.Video;
 import com.company.online_video.service.VideoService;
 import com.company.online_video.utils.ApiBaseResponse;
@@ -36,6 +37,14 @@ public class VideoController {
         return ResponseEntity.ok(response);
     }
 
+    @GetMapping("/video/getAllVideo")
+    public ResponseEntity<?> getAllVideo() {
+        ApiBaseResponse<List<VideoResponseDTO>> response = new ApiBaseResponse<>();
+        response.setData(videoService.getAllVideos());
+        response.setMessage("Get All Video");
+        response.setStatus(HttpStatus.OK);
+        return ResponseEntity.ok(response);
+    }
 
 
 }

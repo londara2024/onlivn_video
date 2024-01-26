@@ -23,7 +23,7 @@ public enum PermissionsEnum {
     ROLE_READ("role:read"),
     ROLE_PERMISSIONS_WRITE("role_permissions:write"),
     ROLE_PERMISSIONS_READ("role_permissions:read"),
-    USER_ROLE_WRITE("user:write"),
-    USER_ROLE_READ("user:read");
+    USER_ROLE_WRITE("user_role:write"),
+    USER_ROLE_READ("user_role:read");
     private String description;
 }

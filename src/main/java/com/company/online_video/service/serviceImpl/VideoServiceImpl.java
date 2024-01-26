@@ -1,6 +1,7 @@
 package com.company.online_video.service.serviceImpl;
 
 import com.company.online_video.dto.VideoDTO;
+import com.company.online_video.dto.response.VideoResponseDTO;
 import com.company.online_video.entity.Video;
 import com.company.online_video.exception.ResultNotFoundException;
 import com.company.online_video.mapper.VideoMappers;
@@ -10,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -34,7 +36,13 @@ public class VideoServiceImpl implements VideoService {
 
     @Override
     public List<Video> getAllVideoByUserId(Long userId) {
-        return videoRepository.findByUserId(userId)
+        return videoRepository.findByUsersId(userId)
                 .orElseThrow(() -> new ResultNotFoundException("Video List", String.valueOf(userId)));
+    }
+
+    @Override
+    public List<VideoResponseDTO> getAllVideos() {
+        return videoRepository.findAll().stream()
+                .map(videoMappers::toVideoResponse).toList();
     }
 }
