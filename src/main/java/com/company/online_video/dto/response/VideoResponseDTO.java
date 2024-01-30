@@ -3,6 +3,7 @@ package com.company.online_video.dto.response;
 import lombok.Builder;
 import lombok.Data;
 
+
 @Data
 @Builder
 public class VideoResponseDTO {

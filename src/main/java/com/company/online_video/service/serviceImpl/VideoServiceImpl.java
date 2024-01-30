@@ -2,10 +2,7 @@ package com.company.online_video.service.serviceImpl;
 
 import com.company.online_video.dto.VideoDTO;
 import com.company.online_video.dto.response.VideoResponseDTO;
-import com.company.online_video.entity.Course;
-import com.company.online_video.entity.Roles;
-import com.company.online_video.entity.Users;
-import com.company.online_video.entity.Video;
+import com.company.online_video.entity.*;
 import com.company.online_video.exception.ResultNotFoundException;
 import com.company.online_video.mapper.VideoMappers;
 import com.company.online_video.repository.VideosRepository;
@@ -19,7 +16,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -30,6 +26,7 @@ public class VideoServiceImpl implements VideoService {
     private final VideoMappers videoMappers;
 
     private final UsersService userService;
+
 
     @Override
     public Video createVideo(VideoDTO videoDTO) {

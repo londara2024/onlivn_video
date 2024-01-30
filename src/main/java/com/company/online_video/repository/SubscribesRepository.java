@@ -5,9 +5,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public interface SubscribesRepository extends JpaRepository<Subscribes, Long> {
-    Optional<List<Subscribes>> findByVideoId(Long videoId);
+    List<Subscribes> findByVideoId(Long videoId);
+    List<Subscribes> findByViewerId(Long viewerId);
+    List<Subscribes> findByViewerEmail(String viewerEmail);
 }

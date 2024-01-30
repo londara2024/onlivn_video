@@ -1,0 +1,10 @@
+databaseChangeLog:
+  - changeSet:
+      id: 003_rename_column_subscribe
+      author: daralon2020@gamil.com
+      changes:
+        - renameColumn:
+            tableName: subscribes
+            oldColumnName: description
+            newColumnName: viewer_email
+            columnDataType: varchar

@@ -5,3 +5,5 @@ databaseChangeLog:
       - file: db/changelog/002_init_db_login_structure.yml
   - include:
       - file: db/changelog/003_rename_column_category.yml
+  - include:
+      - file: db/changelog/003_rename_column_subscribe.yml

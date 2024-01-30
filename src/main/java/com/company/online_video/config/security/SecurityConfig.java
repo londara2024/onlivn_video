@@ -52,7 +52,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.PUT, "/api/v1/video/**").hasAuthority(PermissionsEnum.VIDEO_WRITE.getDescription())
                         .requestMatchers(HttpMethod.DELETE, "/api/v1/video/**").hasAuthority(PermissionsEnum.VIDEO_WRITE.getDescription())
                         .requestMatchers(HttpMethod.GET, "/api/v1/subscribes/**").hasAuthority(PermissionsEnum.SUBSCRIBES_READ.getDescription())
-                        .requestMatchers(HttpMethod.POST, "/api/v1/subscribes/**").hasAuthority(PermissionsEnum.SUBSCRIBES_WRITE.getDescription())
+                        .requestMatchers(HttpMethod.POST, "/api/v1/subscribes/**").hasAuthority(PermissionsEnum.SUBSCRIBES_READ.getDescription())
                         .requestMatchers(HttpMethod.PUT, "/api/v1/subscribes/**").hasAuthority(PermissionsEnum.SUBSCRIBES_WRITE.getDescription())
                         .requestMatchers(HttpMethod.DELETE, "/api/v1/subscribes/**").hasAuthority(PermissionsEnum.SUBSCRIBES_WRITE.getDescription())
 

@@ -2,11 +2,15 @@ package com.company.online_video.mapper;
 
 import com.company.online_video.dto.VideoDTO;
 import com.company.online_video.dto.response.VideoResponseDTO;
+import com.company.online_video.entity.Subscribes;
 import com.company.online_video.entity.Video;
 import com.company.online_video.service.CourseService;
+import com.company.online_video.service.SubscribesService;
 import com.company.online_video.service.UsersService;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+
+import java.util.List;
 
 @Mapper(componentModel = "spring", uses = {CourseService.class, UsersService.class})
 public interface VideoMappers {
@@ -19,6 +23,8 @@ public interface VideoMappers {
     @Mapping(target = "userName", source = "video.users.username")
     @Mapping(target = "email", source = "video.users.email")
     @Mapping(target = "phoneNumber", source = "video.users.phoneNumber")
+//    @Mapping(target = "subscribesList", source = "subscribesList")
+//    VideoResponseDTO toVideoResponse(Video video, List<Subscribes> subscribesList);
     VideoResponseDTO toVideoResponse(Video video);
 
 }

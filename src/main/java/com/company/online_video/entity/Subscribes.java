@@ -16,10 +16,13 @@ public class Subscribes {
     @Column(name = "viewer_id")
     private Long viewerId;
 
+    @Column(name = "viewer_email")
+    private String viewerEmail;
+
     @Column(name = "status")
     private int status;
 
-    @Column(name = "data_subscribes")
+    @Column(name = "date_subscribes")
     private LocalDateTime dateSubscribes;
 
     @ManyToOne
