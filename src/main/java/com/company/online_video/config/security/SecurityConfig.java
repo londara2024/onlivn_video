@@ -35,6 +35,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorization -> authorization
                         .requestMatchers( "/index.html", "css/**", "js/**", "/swagger-ui/**", "/v3/api-docs/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/v1/video/getAllVideo").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/v1/video/specification/**").permitAll()
                         .requestMatchers(HttpMethod.GET,"/api/v1/user/**").hasAuthority(PermissionsEnum.USER_READ.getDescription())
                         .requestMatchers(HttpMethod.POST, "/api/v1/user/**").hasAuthority(PermissionsEnum.USER_WRITE.getDescription())
                         .requestMatchers(HttpMethod.PUT, "/api/v1/user/**").hasAuthority(PermissionsEnum.USER_WRITE.getDescription())

@@ -1,6 +1,7 @@
 package com.company.online_video.service.serviceImpl;
 
 import com.company.online_video.dto.VideoDTO;
+import com.company.online_video.dto.pagination.PageDTO;
 import com.company.online_video.dto.response.VideoResponseDTO;
 import com.company.online_video.entity.*;
 import com.company.online_video.exception.ResultNotFoundException;
@@ -8,17 +9,27 @@ import com.company.online_video.mapper.VideoMappers;
 import com.company.online_video.repository.VideosRepository;
 import com.company.online_video.service.UsersService;
 import com.company.online_video.service.VideoService;
+import com.company.online_video.specification.VideoFilter;
+import com.company.online_video.specification.VideoSpec;
 import com.company.online_video.utils.ApiBaseResponse;
+import com.company.online_video.utils.PageUtils;
 import com.company.online_video.utils.RoleEnum;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class VideoServiceImpl implements VideoService {
 
     private final VideosRepository videoRepository;
@@ -90,6 +101,54 @@ public class VideoServiceImpl implements VideoService {
         }
         return response;
 
+    }
+
+
+    @Override // Using specification
+    public PageDTO getVideoSpecPage(Map<String, String> params) {
+        VideoFilter videoFilter = new VideoFilter();
+        if (params.containsKey("title")) {
+            String title = params.get("title");
+            videoFilter.setTitle(title);
+        }
+        if (params.containsKey("description")) {
+            String description = params.get("description");
+            videoFilter.setDescription(description);
+        }
+        if (params.containsKey("videoLink")) {
+            String videoLink = params.get("videoLink");
+            videoFilter.setVideoLink(videoLink);
+        }
+        if (params.containsKey("imageCover")) {
+            String imageCover = params.get("imageCover");
+            videoFilter.setImageCover(imageCover);
+        }
+        if (params.containsKey("status")) {
+            String status = params.get("status");
+            videoFilter.setStatus(Integer.parseInt(status));
+        }
+        VideoSpec videoSpec = new VideoSpec(videoFilter);
+
+        int pageLimit = PageUtils.DEFAULT_PAGE_LIMIT;
+        if (params.containsKey(PageUtils.PAGE_LIMIT)) {
+            pageLimit = Integer.parseInt(params.get(PageUtils.PAGE_LIMIT));
+        }
+
+        int pageNumber = PageUtils.DEFAULT_PAGE_NUMBER;
+        if (params.containsKey(PageUtils.PAGE_NUMBER)) {
+            pageNumber = Integer.parseInt(params.get(PageUtils.PAGE_NUMBER));
+        }
+        log.info("pageSize  {} and pageLimit {}", pageNumber, pageLimit);
+
+        Pageable pageable = PageUtils.getPageable(pageNumber, pageLimit);
+        Page<Video> videoPage = videoRepository.findAll(videoSpec, pageable);
+        PageDTO pageDTO = new PageDTO(videoPage);
+
+        List<VideoResponseDTO> videoResponseDTOList = pageDTO.getList().stream()
+                .map(p -> videoMappers.toVideoResponse((Video) p))
+                .toList();
+        pageDTO.setList(videoResponseDTOList);
+        return pageDTO;
     }
 
     private boolean checkUserInfo (VideoDTO videoDTO) {

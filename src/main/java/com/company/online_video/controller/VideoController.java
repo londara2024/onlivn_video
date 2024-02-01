@@ -1,6 +1,7 @@
 package com.company.online_video.controller;
 
 import com.company.online_video.dto.VideoDTO;
+import com.company.online_video.dto.pagination.PageDTO;
 import com.company.online_video.dto.response.VideoResponseDTO;
 import com.company.online_video.entity.Video;
 import com.company.online_video.service.VideoService;
@@ -11,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1")
@@ -52,5 +54,9 @@ public class VideoController {
         return ResponseEntity.ok(response);
     }
 
-
+    @GetMapping("/video/specification")
+    public ResponseEntity<?> getVideoSpecPage(@RequestParam Map<String, String> params) {
+        PageDTO response = videoService.getVideoSpecPage(params);
+        return ResponseEntity.ok(response);
+    }
 }

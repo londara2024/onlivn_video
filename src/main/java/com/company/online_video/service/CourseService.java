@@ -10,6 +10,5 @@ import java.util.List;
 public interface CourseService {
     CourseResponseDTO createCourse(CourseDTO courseDTO);
     Course getCourseById(Long id);
-
     List<CourseResponseDTO> getAllCourse();
 }

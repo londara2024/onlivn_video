@@ -20,7 +20,6 @@ public class CourseServiceImpl implements CourseService {
 
     private final CourseRepository courseRepository;
     private final CategoryService categoryService;
-
     private final CourseMappers courseMappers;
 
 
